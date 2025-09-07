@@ -6,8 +6,26 @@ body {
   overflow-y: auto;
 }
 /* login */
+.login-container{
+margin-top: 100px;
+}
+.login-container form input,
+.login-container form textarea,
+.login-container form select {
+  border: 1px solid rgb(130, 125, 125);
+}
+
 
 /* register*/
+
+.register-container{
+margin-top: 100px;
+}
+.register-container form input,
+.register-container form textarea,
+.register-container form select {
+  border: 1px solid rgb(130, 125, 125);
+}
 
 /* forgetPassword*/
 
