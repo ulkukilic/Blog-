@@ -1,0 +1,32 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+
+  overflow-y: auto;
+}
+/* login */
+
+/* register*/
+
+/* forgetPassword*/
+
+
+/* index Page */
+
+
+/* // Customer  // */
+/* contact Page */
+.contact-container{
+  max-width: 900px;
+  margin: 7em auto;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #ddd;
+  padding: 50px;
+}
+.contact-container form input,
+.contact-container form textarea,
+.contact-container form select {
+  border: 1px solid rgb(130, 125, 125);
+}
