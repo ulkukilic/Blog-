@@ -57,3 +57,21 @@ margin-top: 100px;
 .contact-container form select {
   border: 1px solid rgb(130, 125, 125);
 }
+
+
+
+
+
+
+/* //  Admin Page  // */
+/* blog detail Page */
+.blogDetail-container
+{
+margin-top: 170px;
+background-color: #ddd;
+border-radius: 15px;
+box-shadow: 0 0 10px #fff;
+gap:15px;
+align-items: center;
+margin-bottom: 20px;
+}
