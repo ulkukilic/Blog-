@@ -5,9 +5,18 @@ body {
 
   overflow-y: auto;
 }
+
+.error-msg{
+  color: #fff;
+  background-color: #bd423e; 
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center; 
+  
+}
 /* login */
 .login-container{
-margin-top: 100px;
+margin-top: 30px;
 }
 .login-container form input,
 .login-container form textarea,

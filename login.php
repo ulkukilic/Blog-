@@ -1,3 +1,49 @@
+<?php 
+include_once 'config.php';
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $userEmail = trim($_POST['email'] ?? '');
+    $userPassword = trim($_POST['password'] ?? '');
+
+    $sql = 'SELECT users.id, users.full_name, users.password, roles.name AS role
+            FROM users 
+            JOIN roles ON users.role_id = roles.id
+            WHERE users.email = ?';
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $userEmail); // check the specific user by email address for login
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+
+        if (password_verify($userPassword, $user['password'])) {
+            // save the session
+            $_SESSION['user_id']   = $user['id'];
+            $_SESSION['full_name'] = $user['full_name'];
+            $_SESSION['role']      = $user['role'];
+
+            if ($user['role'] === 'admin') {
+                header("Location: admin/index.php");
+                exit();
+            } else {
+                header("Location: index.php");
+                exit();
+            }
+        } else {
+            echo "<p class='error-msg'>Wrong Password!</p>";
+        }
+    } else {
+        echo "<p class='error-msg'> No user found with this email address.</p>";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +63,7 @@
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form action="#" method="POST" class="space-y-6">
+    <form action="login.php" method="POST" class="space-y-6">
       <div>
         <label for="email" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">Email address</label>
         <div class="mt-2">

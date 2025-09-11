@@ -1,3 +1,33 @@
+<?php
+include_once 'config.php';
+session_start();
+
+if($_SERVER['REQUEST_METHOD']== 'POST'){
+   $fullName = trim($_POST['full_name'] ?? '');
+   $userEmail = trim($_POST['email'] ?? '');
+   $userPassword = $_POST['password'] ?? '';
+
+   $hashPassword=password_hash($userPassword, PASSWORD_DEFAULT);
+   $userRole=2;
+
+   //  add user to database
+   $sql =' INSERT INTO users (full_name , email , password , role_id ) VALUES (?,?,?,?)';
+   $stmt=$conn->prepare($sql);
+   $stmt->bind_param("sssi", $fullName, $userEmail, $hashPassword, $userRole);
+
+   if ($stmt->execute()){
+    header('Location: login.php');
+   }else {
+    echo 'Error:' . $conn->error;
+   }
+
+    $stmt->close();
+    $conn->close();
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,11 +47,11 @@
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form action="#" method="POST" class="space-y-6">
+    <form action="register.php" method="POST" class="space-y-6">
         <div>
-            <label for="full-name" class="block text-sm/6 font-semibold text-gray-900 dark:text-white">First name</label>
+            <label for="full_name" class="block text-sm/6 font-semibold text-gray-900 dark:text-white">First name</label>
             <div class="mt-2.5">
-            <input id="full-name" type="text" name="full-name" autocomplete="given-name" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+            <input id="full_name" type="text" name="full_name" autocomplete="given-name" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
             </div>
         </div>
 
