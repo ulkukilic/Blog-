@@ -22,7 +22,6 @@ $result = $conn->query($sql);
 </head>
 <body>
 <?php include __DIR__ . '/../layouts/adminHeader.php'; ?>
-<section class='blog-container'>
 <section class="blog-container">
   <div class="bg-white py-24 sm:py-32 dark:bg-gray-900">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -56,10 +55,10 @@ $result = $conn->query($sql);
               <div class="group relative grow">
                 <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 
                            group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
-                   <a href="blogDetail.php?id=<?= $row['id']; ?>">
-                    <span class="absolute inset-0"></span>
-                    <?= htmlspecialchars($row['title']); ?>
-                  </a>
+                   <?php $token = base64_encode($row['id']); ?> <!--  add  token to the url for security --> 
+                    <a href="blogDetail.php?token=<?= $token; ?>">
+                        <?= htmlspecialchars($row['title']); ?>
+                    </a>
                 </h3>
                 <p class="mt-5 line-clamp-3 text-sm/6 text-gray-600 dark:text-gray-400">
                   <?= htmlspecialchars(substr($row['content'], 0, 150)) . '...'; ?>
@@ -90,8 +89,7 @@ $result = $conn->query($sql);
     </div>
   </div>
 </section>
-  
-</section>
+
 <?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body>
 </html>
