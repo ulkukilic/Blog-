@@ -42,10 +42,10 @@ function base64url_decode($data) {
         Share your ideas, read inspiring blogs, and connect with a creative community.
       </p>
       <div class="mt-10 flex items-center justify-center gap-x-6">
-        <a href="blog.php" class="rounded-md bg-white px-6 py-3 text-lg font-semibold text-indigo-600 shadow hover:bg-gray-100">
+        <a href="customer/blog.php" class="rounded-md bg-white px-6 py-3 text-lg font-semibold text-indigo-600 shadow hover:bg-gray-100">
           Explore Blogs
         </a>
-        <a href="aboutUs.php" class="text-lg font-semibold text-white hover:text-gray-200">
+        <a href="customer/aboutUs.php" class="text-lg font-semibold text-white hover:text-gray-200">
           Learn More →
         </a>
       </div>
