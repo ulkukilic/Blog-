@@ -40,9 +40,10 @@
       <!-- Desktop menu -->
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="/Blog-/index.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Home Page</a>
-        <a href="/Blog-/blog/blog.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Blog</a>
+        <a href="/Blog-/customer/blog.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Blog</a>
         <a href="/Blog-/customer/aboutUs.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">About Us</a>
         <a href="/Blog-/customer/contact.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Contact</a>
+      
       </div>
 
       <!-- Desktop login -->
@@ -91,7 +92,7 @@
           <div class="-my-6 divide-y divide-gray-500/10 dark:divide-gray-700">
             <div class="space-y-2 py-6">
               <a href="/Blog-/index.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Home Page</a>
-              <a href="/Blog-/blog/blog.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Blog</a>
+              <a href="/Blog-/customer/blog.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Blog</a>
               <a href="/Blog-/customer/aboutUs.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">About Us</a>
               <a href="/Blog-/customer/contact.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Contact</a>
             </div>

@@ -21,7 +21,7 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="/Blog-/css/style.css">
 </head>
 <body>
-<?php include __DIR__ . '/../layouts/adminHeader.php'; ?>
+<?php include __DIR__ . '/../layouts/header.php'; ?>
 <section class="blog-container">
   <div class="bg-white py-24 sm:py-32 dark:bg-gray-900">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
