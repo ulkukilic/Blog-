@@ -6,7 +6,7 @@ if (!$token){
     echo "Invalid request.";
     exit;
 }
-$blogId=  base64_decode($token); // decode the token id for blog id 
+$blogId=  base64url_decode($token); // decode the token id for blog id  // NOTE : base64_encode veriyi şifreli gibi görünen bir string’e çevirir ama URL için güvenli değildir.
 
 $sql='SELECT blogs.id, blogs.title, blogs.content, blogs.topic, blogs.created_at,
         users.full_name, users.id AS author_id
@@ -23,6 +23,14 @@ if ($result->num_rows === 0) {
     echo("Blog not found.");
 }
 $blog = $result->fetch_assoc();
+
+function base64url_encode($data) {
+    return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+}
+function base64url_decode($data) {
+    return base64_decode(strtr($data, '-_', '+/'));
+}
+
 ?>
 
 <!DOCTYPE html>
