@@ -43,7 +43,7 @@
         <a href="/Blog-/blog/blog.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Blog</a>
         <a href="/Blog-/admin/contact.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Contacts</a>
         <a href="/Blog-/admin/dataImport.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Data Import</a>
-        <a href="/Blog-/admin/backup.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Backup</a>
+        <a href="/Blog-/admin/bakup.php" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Backup</a>
       </div>
 
       
@@ -111,7 +111,7 @@
                 <a href="/Blog-/blog/blog.php" class="block text-sm font-semibold leading-6 text-gray-900 dark:text-white">Blog</a>
                 <a href="/Blog-/admin/contact.php" class="block text-sm font-semibold leading-6 text-gray-900 dark:text-white">Contacts</a>
                 <a href="/Blog-/admin/dataImport.php" class="block text-sm font-semibold leading-6 text-gray-900 dark:text-white">Data Import</a>
-                <a href="/Blog-/admin/backup.php" class="block text-sm font-semibold leading-6 text-gray-900 dark:text-white">Backup</a>
+                <a href="/Blog-/admin/bakup.php" class="block text-sm font-semibold leading-6 text-gray-900 dark:text-white">Backup</a>
               </div>
             </div>
           </div>
