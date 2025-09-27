@@ -1,0 +1,12 @@
+{
+    "name": "ulkuk/blog",
+    "authors": [
+        {
+            "name": "ulkukilic",
+            "email": "ukilic1@stu.vistula.edu.pl"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^5.1"
+    }
+}
