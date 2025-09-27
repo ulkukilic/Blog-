@@ -1,19 +1,21 @@
 <?php
-include_once '../config.php';
+include_once "C:/laragon/www/Blog-/config.php";
 session_start();
-// Task scheduler ile her 2 gunde bir yedekleme yapilacak
+
 $backupDir = __DIR__ . '/../backups/';
 if (!is_dir($backupDir)) {
     mkdir($backupDir, 0755, true); 
 }
+
+
 echo "<p class='bg-blue-100 text-blue-800 p-3 rounded mt-10'>
-ℹ️ Backup is automatically created by Task Scheduler.
+ℹ️ Backups are created automatically by Task Scheduler.
 </p>";
 
-// Mevcut yedek dosyalarini listeleme
+
 $files = glob($backupDir . "*.sql");
 if ($files) {
-    echo "<h2 class='text-xl font-semibold mt-6 mb-2'> Backups :  </h2>";
+    echo "<h2 class='text-xl font-semibold mt-6 mb-2'>Available Backups:</h2>";
     echo "<ul class='list-disc ml-6'>";
     foreach ($files as $file) {
         $name = basename($file);
@@ -21,6 +23,14 @@ if ($files) {
     }
     echo "</ul>";
 }
+
+$tables = [];
+$result = $conn->query("SHOW TABLES");
+while ($row = $result->fetch_array()) {
+    $tables[] = $row[0];
+}
+
+
 
 // sayfa girisi oldugunda yedekleme yapilmasin diye yorum satiri yapildi
 // Veritabanini yedekleme islemi
