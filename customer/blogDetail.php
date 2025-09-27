@@ -39,6 +39,7 @@ function base64url_decode($data) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Detil</title>
+    <link rel="icon" type="image/x-icon" href="/Blog-/img/logo.png">
     <link rel="stylesheet" href="/Blog-/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> 
     <script src="https://cdn.tailwindcss.com"></script>
