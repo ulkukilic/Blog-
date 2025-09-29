@@ -1,25 +1,59 @@
 <?php
 include_once 'config.php';
+require __DIR__ . '/vendor/autoload.php'; 
 session_start();
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 if($_SERVER['REQUEST_METHOD']== 'POST'){
    $fullName = trim($_POST['full_name'] ?? '');
    $userEmail = trim($_POST['email'] ?? '');
    $userPassword = $_POST['password'] ?? '';
 
+   
+    if (empty($fullName) || empty($userEmail) || empty($userPassword)) {
+        die(" All fields are required.");
+    }
+    if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+          die(" Invalid email format.");
+    }
+
    $hashPassword=password_hash($userPassword, PASSWORD_DEFAULT);
    $userRole=2;
-
+   $verifyToken = bin2hex(random_bytes(16));
    //  add user to database
-   $sql =' INSERT INTO users (full_name , email , password , role_id ) VALUES (?,?,?,?)';
-   $stmt=$conn->prepare($sql);
-   $stmt->bind_param("sssi", $fullName, $userEmail, $hashPassword, $userRole);
+   $sql = 'INSERT INTO users (full_name, email, password, role_id, verify_token, email_verified) VALUES (?, ?, ?, ?, ?, 0)';
+   $stmt = $conn->prepare($sql);
+   $stmt->bind_param("sssis", $fullName, $userEmail, $hashPassword, $userRole, $verifyToken);
 
-   if ($stmt->execute()){
-    header('Location: login.php');
-   }else {
-    echo 'Error:' . $conn->error;
-   }
+    if ($stmt->execute()) {
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = "xxxxxxxxx"; 
+            $mail->SMTPAuth = true;
+            $mail->Username = "xxxxxxxxxx"; 
+            $mail->Password = "xxxxxxxxxxxx";   
+            $mail->SMTPSecure = "xxxxxx";
+            $mail->Port = 587;
+
+            $mail->setFrom("xxxxxxxx", "Blog ");
+            $mail->addAddress($userEmail, $fullName);
+
+            $mail->isHTML(true);
+            $mail->Subject = "Verify your email";
+            $verifyLink = "http://localhost/Blog-/verify.php?token=$verifyToken";
+            $mail->Body = "Hi $fullName,<br><br>Please verify your account by clicking this link:<br><a href='$verifyLink'>$verifyLink</a>";
+
+            $mail->send();
+            echo " Registration successful! Check your email to verify your account.";
+        } catch (Exception $e) {
+            echo " Email could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    } else {
+        echo "Error: " . $conn->error;
+    }
 
     $stmt->close();
     $conn->close();
@@ -33,7 +67,8 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login </title>
+    <title> Register </title>
+    <link rel="icon" type="image/x-icon" href="/Blog-/img/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/Blog-/css/style.css">

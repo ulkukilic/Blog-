@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="flex items-center justify-between">
           <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">Password</label>
           <div class="text-sm">
-            <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Forgot password?</a>
+            <a href="forgetPassword.php" class="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Forgot password?</a>
           </div>
         </div>
         <div class="mt-2">
