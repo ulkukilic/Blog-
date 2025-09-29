@@ -27,18 +27,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['excel_file'])) {
                 continue;
             }
 
-            $title = $row[0] ?? null;
-            $content = $row[1] ?? null;
-            $topic = $row[2] ?? null;
-            $author_id = $row[3] ?? null;
+            $title = trim($row[0] ?? '');
+            $content = trim($row[1] ?? '');
+            $topic = trim($row[2] ?? null);
+            $author_id = trim($row[3] ?? '');
 
-            if (!empty($title) && !empty($content) && !empty($author_id)) {
-                $stmt = $conn->prepare("INSERT INTO blogs (title, content, topic, author_id) VALUES (?, ?, ?, ?)");
-                $stmt->bind_param("sssi", $title, $content, $topic, $author_id);
+            if (!empty($author_id)) {
+                $author_id = filter_var($author_id, FILTER_VALIDATE_INT);
+            }
+
+
+           
+            if (!empty($title) && !empty($content) && $author_id !== false) {
+                $stmt = $conn->prepare("
+                    INSERT INTO blogs (title, content, topic, author_id, image_url, created_at, updated_at) 
+                    VALUES (?, ?, ?, ?, ?, NOW(), NOW())
+                ");
+
+                $image_url = null; // default veya NULL
+                $stmt->bind_param("sssis", $title, $content, $topic, $author_id, $image_url);
+
                 if ($stmt->execute()) {
                     $inserted++;
+                } else {
+                    $errors[] = "Row {$index}: DB Error - " . $stmt->error;
                 }
+            } else {
+                $errors[] = "Row {$index}: Missing or invalid required fields";
             }
+
         }
 
         $message = " $inserted  Blog successfully imported! ";
